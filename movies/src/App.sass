@@ -1,0 +1,179 @@
+//compileCompressed: ./App.css
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans')
+// @import url('https://fonts.googleapis.com/css?family=Pacifico')
+
+$colorTopLeft: rgb(64, 77, 158)
+$colorBotRight: rgb(123, 195, 242)
+$menuBackground: rgb(10, 20, 63)
+$secondaryTextColor: rgb(121, 187, 238)
+
+// Top left to bottom right gradient background
+@mixin gradient-background($c1, $c2)
+  background: $c1
+  background: -webkit-linear-gradient(left top, $c1, $c2)
+  background: -o-linear-gradient(bottom right, $c1, $c2)
+  background: -moz-linear-gradient(bottom right, $c1, $c2)
+  background: linear-gradient(to bottom right, $c1, $c2)
+
+*
+  margin: 0
+  border: none
+  padding: 0
+
+// Style for the menu toggler
+:root
+  --toggler-size: 20px
+  --toggler-width: 25px
+  --sidebar-width: 100%
+
+.menu-toggler__line
+  height: calc(var(--toggler-size) / 7)
+  background: $secondaryTextColor
+  position: absolute
+  left: 0
+  right: 0
+  // transition-property: transform, opacity, background
+  transition: transform, opacity, background
+  transition-duration: .5s, .25s
+  z-index: 50
+
+.menu-toggler__line:nth-child(2)
+  top: calc(var(--toggler-size) / 5 * 2)
+  width: 80%
+
+.menu-toggler__line:nth-child(3)
+  top: calc(var(--toggler-size) / 5 * 4)
+
+.input-toggler:checked ~ .menu-toggler .menu-toggler__line:nth-child(1)
+  transform: translateY(calc(var(--toggler-size) / 5 * 2)) rotate(45deg)
+  background: #fff
+
+.input-toggler:checked ~ .menu-toggler .menu-toggler__line:nth-child(2)
+  opacity: 0
+
+.input-toggler:checked ~ .menu-toggler .menu-toggler__line:nth-child(3)
+  transform: translateY(calc(var(--toggler-size) / 5 * -2)) rotate(-45deg)
+  background: #fff
+
+.input-toggler
+  display: none
+
+.menu-toggler
+  display: none
+  width: var(--toggler-width)
+  height: var(--toggler-size)
+  position: fixed
+  top: 15px
+  left: 10%
+  cursor: pointer
+  z-index: 10
+
+.input-toggler:checked ~ .menu
+  transform: translateX(0)
+  background-position: 0 0
+
+// END of menu toggle style
+
+.App
+  position: absolute
+  width: 100%
+  // height: 100%
+  top: 0
+  left: 0
+  font-family: 'Open Sans', sans-serif
+  display: flex
+  color: #fff
+
+.menu
+  position: fixed
+  width: 300px
+  height: 100vh
+  z-index: 8
+  background: $menuBackground
+
+.main-container
+  @include gradient-background($colorTopLeft, $colorBotRight)
+  background-repeat: no-repeat
+  background-attachment: fixed
+  margin-left: 300px
+  // position: fixed
+  // height: 100vh
+  width: 100%
+  position: relative
+  transition: .2s ease
+
+.movie-cards-container
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: space-between
+  // width: 80%
+  // margin: 0 auto
+
+.movie-card
+  // width: 200px
+  width: 26%
+  margin: 20px 0px
+  clip: rect(10px, 290px, 190px, 10px)
+
+.movie-poster
+  // width: 200px
+  width: 100%
+  border-radius: 12px
+  box-shadow: 0px 0px 50px -15px $menuBackground
+  object-fit: cover
+  // filter: blur(5px)
+
+.movie-title
+  margin: 15px 5px
+
+$topbarH: 50px
+
+.movielist
+  width: 80%
+  margin: 0 auto
+  margin-top: $topbarH + 30px
+
+.topbar
+  height: $topbarH
+  position: fixed
+  background: inherit
+  width: 100%
+  box-shadow: 0px 0px 50px -15px $menuBackground
+
+.search
+  background-image: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNzliYmVlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBkPSJNMjkuMjgzLDI1Ljc0OWwtNy4xMjUtNy4xMjdjMC45NTktMS41ODIsMS41MjEtMy40MzYsMS41MjEtNS40MjJjMC01Ljc5My00LjY4OC0xMC40ODQtMTAuNDgxLTEwLjQ4NiAgQzcuNDA5LDIuNzE2LDIuNzE3LDcuNDA3LDIuNzE3LDEzLjE5OWMwLDUuNzg4LDQuNjkzLDEwLjQ3OSwxMC40ODQsMTAuNDc5YzEuOTg3LDAsMy44MzgtMC41NjIsNS40Mi0xLjUyMWw3LjEyOSw3LjEyOSAgTDI5LjI4MywyNS43NDl6IE02LjcxNiwxMy4xOTlDNi43MjIsOS42MTcsOS42MTksNi43MiwxMy4yLDYuNzE0YzMuNTgsMC4wMDgsNi40NzgsMi45MDMsNi40ODQsNi40ODUgIGMtMC4wMDcsMy41NzktMi45MDQsNi40NzgtNi40ODQsNi40ODNDOS42MTgsMTkuNjc3LDYuNzIxLDE2Ljc3OCw2LjcxNiwxMy4xOTl6Ii8+PC9zdmc+")
+  height: calc(var(--toggler-size) * 1.5)
+  width: calc(var(--toggler-size) * 1.5)
+  position: absolute
+  top: 10px
+  right: 10%
+
+.app-title
+  text-align: center
+  line-height: $topbarH
+  font-size: 1.6em
+  display: none
+
+// -------------Mobile theme-------------
+
+@media (max-width:950px)
+  .menu-toggler
+    display: block
+    z-index: 10
+
+  .menu
+    width: 100%
+    width: var(--sidebar-width)
+    transform: translateX(calc(var(--sidebar-width) * -1))
+    transition: transform .4s, background-position 1s .6s
+
+  .main-container
+    margin-left: 0
+
+  .movie-card
+    width: 45%
+
+  .app-title
+    display: block
