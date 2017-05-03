@@ -66,7 +66,7 @@ class Movielist extends Component {
       );
     } else {
       return(
-        <p>Loading movies...</p>
+        <h1>Loading movies...</h1>
       );
     }
   }

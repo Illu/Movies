@@ -3,6 +3,7 @@ import './App.css';
 import {loadJSON} from './utils.js';
 import Movielist from './movielist.js';
 import Topbar from './topbar.js';
+import Menu from './menu.js';
 import {cfg} from './cfg.js';
 
 class App extends Component {
@@ -43,7 +44,7 @@ class App extends Component {
         </label>
 
         <div className="menu">
-
+          <Menu />
         </div>
 
         <div className="main-container">

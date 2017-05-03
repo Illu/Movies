@@ -21,6 +21,10 @@ $secondaryTextColor: rgb(121, 187, 238)
   border: none
   padding: 0
 
+a
+  color: inherit
+  text-decoration: none
+
 // Style for the menu toggler
 :root
   --toggler-size: 20px
@@ -92,6 +96,25 @@ $secondaryTextColor: rgb(121, 187, 238)
   z-index: 8
   background: $menuBackground
 
+  .menu-title
+    display: block
+    color: #fff
+    margin-left: 40px
+    padding: 20px 0px
+    font-size: .8em
+
+  .menu-title.selected
+    color: $secondaryTextColor
+
+  li
+    transition: .2s
+
+  li:hover
+    color: $secondaryTextColor
+
+  li p
+    display: inline-block
+
 .main-container
   @include gradient-background($colorTopLeft, $colorBotRight)
   background-repeat: no-repeat
@@ -138,9 +161,15 @@ $topbarH: 50px
 .topbar
   height: $topbarH
   position: fixed
+  // Add the gradient to the background, overrides background blur
   background: inherit
   width: 100%
-  box-shadow: 0px 0px 50px -15px $menuBackground
+  border-bottom: 1px solid $secondaryTextColor
+  opacity: .98
+  // Only working on safari :(
+  backdrop-filter: blur(20px)
+  -webkit-backdrop-filter: blur(20px)
+
 
 .search
   background-image: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNzliYmVlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBkPSJNMjkuMjgzLDI1Ljc0OWwtNy4xMjUtNy4xMjdjMC45NTktMS41ODIsMS41MjEtMy40MzYsMS41MjEtNS40MjJjMC01Ljc5My00LjY4OC0xMC40ODQtMTAuNDgxLTEwLjQ4NiAgQzcuNDA5LDIuNzE2LDIuNzE3LDcuNDA3LDIuNzE3LDEzLjE5OWMwLDUuNzg4LDQuNjkzLDEwLjQ3OSwxMC40ODQsMTAuNDc5YzEuOTg3LDAsMy44MzgtMC41NjIsNS40Mi0xLjUyMWw3LjEyOSw3LjEyOSAgTDI5LjI4MywyNS43NDl6IE02LjcxNiwxMy4xOTlDNi43MjIsOS42MTcsOS42MTksNi43MiwxMy4yLDYuNzE0YzMuNTgsMC4wMDgsNi40NzgsMi45MDMsNi40ODQsNi40ODUgIGMtMC4wMDcsMy41NzktMi45MDQsNi40NzgtNi40ODQsNi40ODNDOS42MTgsMTkuNjc3LDYuNzIxLDE2Ljc3OCw2LjcxNiwxMy4xOTl6Ii8+PC9zdmc+")
@@ -151,10 +180,16 @@ $topbarH: 50px
   right: 10%
 
 .app-title
+  // This title should be displayed on mobile only
   text-align: center
   line-height: $topbarH
   font-size: 1.6em
   display: none
+
+.menu-app-title
+  // This title should be always displayed (mobile or desktop)
+  @extend .app-title
+  display: block
 
 // -------------Mobile theme-------------
 
@@ -169,6 +204,22 @@ $topbarH: 50px
     transform: translateX(calc(var(--sidebar-width) * -1))
     transition: transform .4s, background-position 1s .6s
 
+    .menu-title
+      margin-left: 0px
+
+    .profile
+      padding: 10px 0px 20px 0px
+
+      .profile-pic
+        width: 75px
+        height: 75px
+        margin-bottom: 10px
+
+  ul
+    width: 150px
+    margin: 0 auto
+
+
   .main-container
     margin-left: 0
 
@@ -177,3 +228,7 @@ $topbarH: 50px
 
   .app-title
     display: block
+
+  .topbar
+    box-shadow: 0px 0px 50px -15px $menuBackground
+    border-bottom: none
