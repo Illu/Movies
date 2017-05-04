@@ -60,7 +60,6 @@ class Movielist extends Component {
           <h2 className="section-title">Popular now</h2>
           <div className='movie-cards-container'>
             {movies}
-            <h1>{this.props.data.results[0].overview}</h1>
           </div>
         </div>
       );
