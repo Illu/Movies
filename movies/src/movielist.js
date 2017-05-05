@@ -60,10 +60,22 @@ class Movielist extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
     this.getFirsts(this.state.moviesNumber, nextProps);
   }
 
   render(){
+
+    var loadButton =
+    <button onClick={ (e) => this.getFirsts(6, this.props)}
+            className='load-more-button'>
+      Load more
+    </button>;
+
+    if (this.state.currentIndex >= 20){
+      loadButton =
+      <h3 className='end-of-list'>You've reached the end of the list!</h3>;
+    }
 
     if (this.props.data){
       return(
@@ -72,10 +84,7 @@ class Movielist extends Component {
           <div className='movie-cards-container'>
             {this.state.movies}
           </div>
-          <button onClick={ (e) => this.getFirsts(6, this.props)}
-                  className='load-more-button'>
-            Load more
-          </button>
+          {loadButton}
         </div>
       );
     } else {
