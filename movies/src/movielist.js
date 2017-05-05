@@ -42,15 +42,19 @@ class Movielist extends Component {
   getFirsts(n, d){
 
     var moviesTmp = this.state.movies;
-
     for (var i = this.state.currentIndex; i < n + this.state.currentIndex; i++){
-      moviesTmp.push(<Moviecard
-                  name={d.data.results[i].original_title}
-                  img={d.data.results[i].poster_path}
-                  id={i}
-                  key={i}
-                  enabled={null}
-                />)
+      try {
+        moviesTmp.push(<Moviecard
+                    name={d.data.results[i].original_title}
+                    img={d.data.results[i].poster_path}
+                    id={i}
+                    key={i}
+                    enabled={null}
+                  />)
+        }
+        catch (err){
+          console.log('Something went wrong retrieving a movie: ' + err)
+        }
     }
     this.setState({movies: moviesTmp, currentIndex: i});
   }
