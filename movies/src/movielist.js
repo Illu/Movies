@@ -34,38 +34,51 @@ class Moviecard extends Component {
 
 class Movielist extends Component {
 
-  getFirsts(n){
-    //Get the n firsts movies of the data
-    var movies = [];
+  constructor(props){
+    super(props);
+    this.state = {moviesNumber: 6, currentIndex: 0, movies: []}
+  }
 
-    for (var i = 0; i < n; i++){
-      movies.push(<Moviecard
-                  name={this.props.data.results[i].original_title}
-                  img={this.props.data.results[i].poster_path}
+  getFirsts(n, d){
+
+    var moviesTmp = this.state.movies;
+
+    for (var i = this.state.currentIndex; i < n + this.state.currentIndex; i++){
+      moviesTmp.push(<Moviecard
+                  name={d.data.results[i].original_title}
+                  img={d.data.results[i].poster_path}
                   id={i}
                   key={i}
                   enabled={null}
                 />)
     }
-    return movies;
+    this.setState({movies: moviesTmp, currentIndex: i});
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.getFirsts(this.state.moviesNumber, nextProps);
   }
 
   render(){
 
     if (this.props.data){
-      var movies = this.getFirsts(6);
-
       return(
         <div className='movielist'>
           <h2 className="section-title">Popular now</h2>
           <div className='movie-cards-container'>
-            {movies}
+            {this.state.movies}
           </div>
+          <button onClick={ (e) => this.getFirsts(6, this.props)}
+                  className='load-more-button'>
+            Load more
+          </button>
         </div>
       );
     } else {
       return(
-        <h1>Loading movies...</h1>
+        <div className='movielist'>
+          Loading movies...
+        </div>
       );
     }
   }
