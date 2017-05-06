@@ -216,6 +216,58 @@ $topbarH: 50px
   margin: 0px 0px 30px 0px
   color: #fff
 
+.loading-wrapper
+  height: 100vh
+
+.loading-anim
+  display: block
+  position: relative
+  left: 50%
+  top: 50%
+  width: 50px
+  height: 50px
+  border: 3px solid transparent
+  border-radius: 100%
+  border-bottom-color: $secondaryTextColor
+  -webkit-animation: spin 1.5s linear infinite
+  animation: spin 1.5s linear infinite
+
+.loading-anim:before
+  content: ""
+  position: absolute
+  top: 5px
+  left: 5px
+  right: 5px
+  bottom: 5px
+  border-radius: 50%
+  border: 3px solid transparent
+  border-top-color: $secondaryTextColor
+  -webkit-animation: spin 2s linear infinite
+  animation: spin 2s linear infinite
+
+// -------------Animations-------------
+
+@-webkit-keyframes spin
+    0%
+        -webkit-transform: rotate(0deg)
+        -ms-transform: rotate(0deg)
+        transform: rotate(0deg)
+    100%
+        -webkit-transform: rotate(360deg)
+        -ms-transform: rotate(360deg)
+        transform: rotate(360deg)
+
+@keyframes spin
+    0%
+        -webkit-transform: rotate(0deg)
+        -ms-transform: rotate(0deg)
+        transform: rotate(0deg)
+    100%
+        -webkit-transform: rotate(360deg)
+        -ms-transform: rotate(360deg)
+        transform: rotate(360deg)
+
+
 // -------------Mobile theme-------------
 
 @media (max-width:950px)

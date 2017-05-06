@@ -89,8 +89,8 @@ class Movielist extends Component {
       );
     } else {
       return(
-        <div className='movielist'>
-          Loading movies...
+        <div className='loading-wrapper'>
+          <div className='loading-anim'/>
         </div>
       );
     }
