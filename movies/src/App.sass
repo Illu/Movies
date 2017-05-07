@@ -101,13 +101,13 @@ button:focus
   background: $menuBackground
 
   .menu-title
-    width: 40%
     display: block
     color: #fff
     // margin-left: 40px
     padding: 20px 0px
     font-size: .8em
-    margin: 0 auto
+    margin-left: 35%
+    // margin: 0 auto
 
   .menu-title.selected
     color: $secondaryTextColor
@@ -254,7 +254,7 @@ $topbarH: 50px
 
 .search:focus
   outline: none
-  text-align: left
+  // text-align: left
 
 
 // -------------Animations-------------
@@ -294,7 +294,7 @@ $topbarH: 50px
     transition: transform .4s, background-position 1s .6s
 
     .menu-title
-      margin-left: 0px
+      margin-left: 20%
 
     .profile
       padding: 10px 0px 20px 0px
@@ -325,8 +325,9 @@ $topbarH: 50px
     box-shadow: 0px 0px 50px -15px $menuBackground
     display: block
     border-bottom: none
+    background: inherit
 
-  .search
+  .search-mobile
     all: initial
     background-image: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNzliYmVlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBkPSJNMjkuMjgzLDI1Ljc0OWwtNy4xMjUtNy4xMjdjMC45NTktMS41ODIsMS41MjEtMy40MzYsMS41MjEtNS40MjJjMC01Ljc5My00LjY4OC0xMC40ODQtMTAuNDgxLTEwLjQ4NiAgQzcuNDA5LDIuNzE2LDIuNzE3LDcuNDA3LDIuNzE3LDEzLjE5OWMwLDUuNzg4LDQuNjkzLDEwLjQ3OSwxMC40ODQsMTAuNDc5YzEuOTg3LDAsMy44MzgtMC41NjIsNS40Mi0xLjUyMWw3LjEyOSw3LjEyOSAgTDI5LjI4MywyNS43NDl6IE02LjcxNiwxMy4xOTlDNi43MjIsOS42MTcsOS42MTksNi43MiwxMy4yLDYuNzE0YzMuNTgsMC4wMDgsNi40NzgsMi45MDMsNi40ODQsNi40ODUgIGMtMC4wMDcsMy41NzktMi45MDQsNi40NzgtNi40ODQsNi40ODNDOS42MTgsMTkuNjc3LDYuNzIxLDE2Ljc3OCw2LjcxNiwxMy4xOTl6Ii8+PC9zdmc+")
     height: calc(var(--toggler-size) * 1.5)
@@ -334,3 +335,22 @@ $topbarH: 50px
     position: absolute
     top: 10px
     right: 10%
+    cursor: pointer
+
+  .search
+    position: relative
+    margin-top: 7px
+
+  .search::placeholder
+    color: $secondaryTextColor
+
+  .menu .search
+    display: none
+
+  // .search
+  //   display: none
+  //
+  // #mobile-input
+  //   display: block
+  //   font-size: 1.5em
+  //   margin: 0 auto

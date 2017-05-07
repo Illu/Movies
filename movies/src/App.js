@@ -40,10 +40,6 @@ class App extends Component {
 
   render() {
 
-    // var imgUrl = 'http://image.tmdb.org/t/p/original/' + this.state.test;
-
-    console.log("render !")
-
     return (
       <div className="App">
 
@@ -61,7 +57,7 @@ class App extends Component {
 {/* key to reset component when changing data url */}
         <div className="main-container" key={this.state.url}>
           {/* <img src={imgUrl}/> */}
-          <Topbar />
+          <Topbar updateData={this.updateURL.bind(this)}/>
           <Movielist data={this.state.test}/>
         </div>
       </div>
