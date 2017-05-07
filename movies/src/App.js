@@ -13,7 +13,8 @@ class App extends Component {
 
     this.state = {
       test: null,
-      url: "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1"
+      url: "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1",
+      title: "Popular now"
     }
 
   }
@@ -22,9 +23,10 @@ class App extends Component {
     this.getData("https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1");
   }
 
-  updateURL(url){
+  updateURL(url, title){
     //The state is used as a key for the main-container element.
     this.setState({url: url});
+    this.setState({title: title});
     this.getData(url);
   }
 
@@ -58,7 +60,10 @@ class App extends Component {
         <div className="main-container" key={this.state.url}>
           {/* <img src={imgUrl}/> */}
           <Topbar updateData={this.updateURL.bind(this)}/>
-          <Movielist data={this.state.test}/>
+          <Movielist
+            data={this.state.test}
+            title={this.state.title}
+          />
         </div>
       </div>
     );

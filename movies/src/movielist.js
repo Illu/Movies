@@ -36,7 +36,11 @@ class Movielist extends Component {
 
   constructor(props){
     super(props);
-    this.state = {moviesNumber: 6, currentIndex: 0, movies: []}
+    this.state = {
+      moviesNumber: 6,
+      currentIndex: 0,
+      movies: []
+    }
   }
 
   getFirsts(n, d){
@@ -82,7 +86,7 @@ class Movielist extends Component {
     if (this.props.data){
       return(
         <div className='movielist'>
-          <h2 className="section-title">Popular now</h2>
+          <h2 className="section-title">{this.props.title}</h2>
           <div className='movie-cards-container'>
             {this.state.movies}
           </div>

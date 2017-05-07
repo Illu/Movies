@@ -7,7 +7,7 @@ class SearchMobile extends Component {
 
   onKeyPress = (e) => {
     if (e.key === 'Enter') {
-      this.props.updateData("https://api.themoviedb.org/3/search/multi?api_key=" + cfg.api_key + "&language=en-US&query=" + e.target.value + "&page=1&include_adult=true");
+      this.props.updateData("https://api.themoviedb.org/3/search/multi?api_key=" + cfg.api_key + "&language=en-US&query=" + e.target.value + "&page=1&include_adult=true", "Search results");
     }
   }
 
