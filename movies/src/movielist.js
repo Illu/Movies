@@ -66,6 +66,8 @@ class Movielist extends Component {
 
   render(){
 
+    console.log(this.props.data)
+
     var loadButton =
     <button onClick={ (e) => this.getFirsts(6, this.props)}
             className='load-more-button'>

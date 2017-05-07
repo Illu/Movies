@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
+import {cfg} from './cfg.js';
+
+class Search extends Component{
+  onKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.props.updateData("https://api.themoviedb.org/3/search/multi?api_key=" + cfg.api_key + "&language=en-US&query=" + e.target.value + "&page=1&include_adult=true");
+    }
+  }
+
+  render() {
+    return <input className="search" placeholder="Search movies..." onKeyPress={this.onKeyPress} />
+  }
+}
 
 class Menu extends Component {
   render(){
     return (
       <ul>
         <a href="#">
-          <li className="menu-app-title">
+          <div className="menu-app-title">
             <p>Movies</p>
-          </li></a>
+          </div></a>
+        <Search updateData={this.props.updateData}/>
         <a href="#">
           <li className="menu-title">
             <p>Popular now</p>
