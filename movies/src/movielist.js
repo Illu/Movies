@@ -55,8 +55,8 @@ class Movielist extends Component {
     for (var i = this.state.currentIndex; i < n + this.state.currentIndex; i++){
       try {
 
+        // The API is weird, sometimes the title is in original_title, sometimes not.
         var name;
-
         name = d.data.results[i].original_title;
         if (!name)
           name = d.data.results[i].name;
