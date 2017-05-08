@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      test: null,
+      data: null,
       url: "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1",
       title: "Popular now"
     }
@@ -25,6 +25,7 @@ class App extends Component {
 
   updateURL(url, title){
     //The state is used as a key for the main-container element.
+    this.setState({data: null})
     this.setState({url: url});
     this.setState({title: title});
     this.getData(url);
@@ -33,7 +34,7 @@ class App extends Component {
   getData(url){
     console.log("getting data");
     loadJSON(url,
-              data => this.setState({test: data}),
+              data => this.setState({data: data}),
               function(xhr){
                 console.log("Error retrieving data");
               }
@@ -56,12 +57,11 @@ class App extends Component {
           <Menu updateData={this.updateURL.bind(this)}/>
         </div>
 
-{/* key to reset component when changing data url */}
+        {/* key to reset component when changing data url */}
         <div className="main-container" key={this.state.url}>
-          {/* <img src={imgUrl}/> */}
           <Topbar updateData={this.updateURL.bind(this)}/>
           <Movielist
-            data={this.state.test}
+            data={this.state.data}
             title={this.state.title}
           />
         </div>

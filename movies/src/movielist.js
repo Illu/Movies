@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import placeholder from '../public/assets/imgs/placeholder-poster.png';
 
 class Moviecard extends Component {
 
@@ -14,7 +15,12 @@ class Moviecard extends Component {
 
   render(){
 
-    var imgUrl = 'http://image.tmdb.org/t/p/w500/' + this.props.img;
+    var imgUrl;
+    if (this.props.img)
+      imgUrl = 'http://image.tmdb.org/t/p/w500/' + this.props.img;
+    else
+      imgUrl = placeholder;
+
     var posterAlt = this.props.name + " poster";
     var id = 'movie' + this.props.id;
 
@@ -48,8 +54,17 @@ class Movielist extends Component {
     var moviesTmp = this.state.movies;
     for (var i = this.state.currentIndex; i < n + this.state.currentIndex; i++){
       try {
+
+        var name;
+
+        name = d.data.results[i].original_title;
+        if (!name)
+          name = d.data.results[i].name;
+        if (!name)
+          name = d.data.results[i].original_name;
+
         moviesTmp.push(<Moviecard
-                    name={d.data.results[i].original_title}
+                    name={name}
                     img={d.data.results[i].poster_path}
                     id={i}
                     key={i}
@@ -86,7 +101,9 @@ class Movielist extends Component {
     if (this.props.data){
       return(
         <div className='movielist'>
-          <h2 className="section-title">{this.props.title}</h2>
+          <h2 className="section-title">
+            {this.props.title}
+          </h2>
           <div className='movie-cards-container'>
             {this.state.movies}
           </div>
