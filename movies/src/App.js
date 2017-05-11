@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       data: null,
       url: "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1",
-      title: "Popular now"
+      title: "Popular now",
+      mobileMenuDisplay: false
     }
 
   }
@@ -31,6 +32,8 @@ class App extends Component {
     this.getData(url);
   }
 
+
+
   getData(url){
     console.log("getting data");
     loadJSON(url,
@@ -45,17 +48,7 @@ class App extends Component {
 
     return (
       <div className="App">
-
-        <input type='checkbox' className='input-toggler' id='menuToggler'/>
-        <label htmlFor="menuToggler" className='menu-toggler'>
-          <span className='menu-toggler__line'/>
-          <span className='menu-toggler__line'/>
-          <span className='menu-toggler__line'/>
-        </label>
-
-        <div className="menu">
-          <Menu updateData={this.updateURL.bind(this)}/>
-        </div>
+        <Menu updateData={this.updateURL.bind(this)} />
 
         {/* key to reset component when changing data url */}
         <div className="main-container" key={this.state.url}>
