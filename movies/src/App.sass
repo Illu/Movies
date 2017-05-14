@@ -1,12 +1,6 @@
 //compileCompressed: ./App.css
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans')
-// @import url('https://fonts.googleapis.com/css?family=Pacifico')
-
-$colorTopLeft: rgb(64, 77, 158)
-$colorBotRight: rgb(123, 195, 242)
-$menuBackground: rgb(10, 20, 63)
-$secondaryTextColor: rgb(121, 187, 238)
+@import "utilities/variables"
 
 // Top left to bottom right gradient background
 @mixin gradient-background($c1, $c2)
@@ -75,7 +69,7 @@ button:focus
   top: 15px
   left: 10%
   cursor: pointer
-  z-index: 10
+  z-index: 50
 
 .input-toggler:checked ~ .menu
   transform: translateX(0)
@@ -97,7 +91,7 @@ button:focus
   position: fixed
   width: 300px
   height: 100vh
-  z-index: 8
+  z-index: 5
   background: $menuBackground
 
   .menu-title
@@ -167,6 +161,7 @@ $topbarH: 50px
   min-height: 100vh
 
 .topbar
+  z-index: 2
   height: $topbarH
   position: fixed
   // Add the gradient to the background, overrides background blur

@@ -1,0 +1,51 @@
+//compileCompressed: ./details.css
+
+@import "utilities/variables"
+
+.details-container
+  background: white
+  position: fixed
+  // The margin-left is modified in the details component.
+  left: 300px
+  top: 0
+  width: 100vw
+  height: 100vh
+  z-index: 10
+  transition-duration: .5s, .25s
+  opacity: .9
+
+.mtitle
+  color: black
+  margin-top: 100px
+  margin-left: 32px
+
+.close-button
+  position: absolute
+  cursor: pointer
+  top: 32px
+  left: 32px
+  width: 32px
+  height: 32px
+
+  &:before,  &:after
+    position: absolute
+    height: 32px
+    left: 15px
+    width: 2px
+    background: $menuBackground
+    margin-top: 0px
+    content: ""
+
+  &:before
+    transform: rotate(45deg)
+
+  &:after
+    transform: rotate(-45deg)
+
+
+
+//Mobile theme
+@media (max-width:950px)
+
+  .details-container
+    left: 0

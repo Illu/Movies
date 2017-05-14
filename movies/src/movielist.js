@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import placeholder from '../public/assets/imgs/placeholder-poster.png';
+import Details from './details.js';
+import {getTitle} from './utils.js';
 
 class Moviecard extends Component {
 
@@ -9,6 +11,7 @@ class Moviecard extends Component {
   }
 
   handleClick(id){
+    this.props.showDetails();
     console.log('Clicked on ' + id);
   }
 
@@ -45,7 +48,9 @@ class Movielist extends Component {
     this.state = {
       moviesNumber: 6,
       currentIndex: 0,
-      movies: []
+      movies: [],
+      showDetails: -1,
+      showDetailsData: null
     }
   }
 
@@ -55,13 +60,7 @@ class Movielist extends Component {
     for (var i = this.state.currentIndex; i < n + this.state.currentIndex; i++){
       try {
 
-        // The API is weird, sometimes the title is in original_title, sometimes not.
-        var name;
-        name = d.data.results[i].original_title;
-        if (!name)
-          name = d.data.results[i].name;
-        if (!name)
-          name = d.data.results[i].original_name;
+        var name = getTitle(d.data.results[i]);
 
         moviesTmp.push(<Moviecard
                     name={name}
@@ -69,6 +68,7 @@ class Movielist extends Component {
                     id={i}
                     key={i}
                     enabled={null}
+                    showDetails={this.showDetails.bind(this, i, d.data.results[i])}
                   />)
         }
         catch (err){
@@ -81,6 +81,16 @@ class Movielist extends Component {
   componentWillReceiveProps(nextProps) {
     console.log(nextProps)
     this.getFirsts(this.state.moviesNumber, nextProps);
+  }
+
+  resetDetails(){
+    this.setState({showDetails: -1});
+    this.setState({showDetailsData: null});
+  }
+
+  showDetails(i, data){
+    this.setState({showDetails: i});
+    this.setState({showDetailsData: data});
   }
 
   render(){
@@ -108,6 +118,11 @@ class Movielist extends Component {
             {this.state.movies}
           </div>
           {loadButton}
+          <Details
+            show={this.state.showDetails}
+            data={this.state.showDetailsData}
+            exit={this.resetDetails.bind(this)}
+          />
         </div>
       );
     } else {
