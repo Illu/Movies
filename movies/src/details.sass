@@ -2,22 +2,23 @@
 
 @import "utilities/variables"
 
+@mixin gradient-background($c1, $c2)
+  background: $c1
+  background: -webkit-linear-gradient(left top, $c1, $c2)
+  background: -o-linear-gradient(bottom right, $c1, $c2)
+  background: -moz-linear-gradient(bottom right, $c1, $c2)
+  background: linear-gradient(to bottom right, $c1, $c2)
+
+
 .details-container
-  background: white
+  @include gradient-background($colorTopLeft, $colorBotRight)
   position: fixed
   // The margin-left is modified in the details component.
   left: 300px
   top: 0
-  width: 100vw
   height: 100vh
   z-index: 10
   transition-duration: .5s, .25s
-  opacity: .9
-
-.mtitle
-  color: black
-  margin-top: 100px
-  margin-left: 32px
 
 .close-button
   position: absolute
@@ -31,8 +32,8 @@
     position: absolute
     height: 32px
     left: 15px
-    width: 2px
-    background: $menuBackground
+    width: 4px
+    background: $secondaryTextColor
     margin-top: 0px
     content: ""
 
@@ -42,6 +43,28 @@
   &:after
     transform: rotate(-45deg)
 
+.backdrop
+  width: 100%
+
+.movie-details
+  margin: -90px 64px
+
+  .mtitle
+    display: inline
+    color: $secondaryTextColor
+    font-size: 2.4em
+    background: rgba(0,0,0,0.5)
+
+  .date
+    display: inline
+    color: #fff
+    background: rgba(0,0,0,0.5)
+
+  .overview
+    text-align: justify
+    margin-top: 32px
+    color: #fff
+    font-size: 1.3em
 
 
 //Mobile theme
@@ -49,3 +72,4 @@
 
   .details-container
     left: 0
+    width: 100vw
