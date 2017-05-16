@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './details.css';
 import {getTitle} from './utils.js';
 import moment from 'moment';
+import placeholder from '../public/assets/imgs/placeholder-backdrop.png'
 
 class Details extends Component{
 
@@ -15,14 +16,18 @@ class Details extends Component{
       return(
         <div
           className='details-container'
-          style={{marginLeft: 100 + 'vw'}}
+          style={{transform: 'translate(100vw, 0px)'}}
           >
         </div>
       );
     else{
 
+      var backdrop;
+      if (this.props.data.backdrop_path)
+        backdrop = "http://image.tmdb.org/t/p/w1280/" + this.props.data.backdrop_path;
+      else
+        backdrop = placeholder;
       var name = getTitle(this.props.data),
-      backdrop = "http://image.tmdb.org/t/p/w1280/" + this.props.data.backdrop_path,
       backAlt = name + " backdrop image",
       date = moment(this.props.data.release_date).format('MMM DD YYYY'),
       overview = this.props.data.overview;
@@ -30,9 +35,12 @@ class Details extends Component{
       return (
         <div
           className='details-container'
-          style={{marginLeft: 0}}
+          style={{transform: 'translate(0vw, 0px)'}}
           >
             <div className='close-button' onClick={this.props.exit}/>
+            {/*Switch this for a div with background image
+              then put the mtitle and date as children
+              to have the text always positioned correctly  */}
             <img src={backdrop}
                  alt={backAlt}
                  className='backdrop'

@@ -13,18 +13,19 @@
 .details-container
   @include gradient-background($colorTopLeft, $colorBotRight)
   position: fixed
-  // The margin-left is modified in the details component.
+  display: block
   left: 300px
-  top: 0
-  height: 100vh
   z-index: 10
+  top: 0
+  width: calc(100vw - 300px)
+  height: 100vh
   transition-duration: .5s, .25s
 
 .close-button
   position: absolute
   cursor: pointer
-  top: 32px
-  left: 32px
+  top: 16px
+  left: 16px
   width: 32px
   height: 32px
 
@@ -73,3 +74,12 @@
   .details-container
     left: 0
     width: 100vw
+
+  .movie-details
+    margin: -90px 16px
+
+    .mtitle
+      font-size: 2em
+
+    .overview
+      font-size: 1em
