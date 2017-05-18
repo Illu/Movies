@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {cfg} from './cfg.js';
+import {categories} from './categories.js';
 
 class CheckBox extends Component{
 
@@ -41,6 +42,60 @@ class Search extends Component{
   }
 }
 
+class MenuItems extends Component{
+  // This component requires the categories array
+
+  constructor(props){
+    super(props);
+    this.state = {
+      items: null,
+      activeItem: 0
+    }
+  }
+
+  componentWillMount(){
+    var items = [];
+    var i = 0;
+
+    categories.forEach((item) => {
+
+      var classes = "menu-title";
+      if (this.state.activeItem === i)
+        classes += " selected";
+
+      items.push(
+        <a href="#" key={i}>
+          <li
+            className={classes}
+            onClick={() => {
+              this.setState({activeItem: i});
+              this.props.clickEvent(item.url, item.title);
+            }}>
+            <p>{item.title}</p>
+          </li>
+        </a>
+      );
+      i++;
+    });
+
+    this.setState({items: items});
+  }
+
+  render(){
+
+    return (
+      <ul>
+        <a href="#">
+          <div className="menu-app-title" onClick={this.props.clickEvent.bind(this, categories[0].url, categories[0].title)}>
+            <p>Movies</p>
+          </div></a>
+        <Search updateData={this.props.updateData}/>
+        {this.state.items}
+      </ul>
+    );
+  }
+}
+
 class Menu extends Component {
 
   constructor(props){
@@ -74,37 +129,10 @@ class Menu extends Component {
           <span className='menu-toggler__line'/>
         </label>
         <div className='menu'>
-          <ul>
-            <a href="#">
-              <div className="menu-app-title" onClick={this.onClick.bind(this, 0)}>
-                <p>Movies</p>
-              </div></a>
-            <Search updateData={this.props.updateData}/>
-            <a href="#">
-              <li
-                className="menu-title selected"
-                onClick={this.onClick.bind(this, "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1", "Popular now")}>
-                <p>Popular now</p>
-              </li></a>
-            <a href="#">
-              <li
-                className="menu-title"
-                onClick={this.onClick.bind(this, "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&sort_by=primary_release_date.desc&include_adult=true&include_video=false&page=1", "Most recent")}>
-                <p>Most recent</p>
-              </li></a>
-            <a href="#">
-              <li
-                className="menu-title"
-                onClick={this.onClick.bind(this, "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&sort_by=vote_count.desc&include_adult=true&include_video=false&page=1", "Top rated")}>
-                <p>Top rated</p>
-              </li></a>
-            <a href="#">
-              <li
-                className="menu-title"
-                onClick={this.onClick.bind(this, "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&sort_by=revenue.desc&include_adult=false&include_video=false&page=1", "Top revenue")}>
-                <p>Top revenue</p>
-              </li></a>
-          </ul>
+          <MenuItems
+            updateData={this.props.updateData.bind(this)}
+            clickEvent={this.onClick.bind(this)}
+          />
         </div>
       </div>
     );
