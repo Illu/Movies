@@ -50,28 +50,13 @@ class Menu extends Component {
     }
   }
 
-  onClick(n){
+  onClick(url, title){
 
     //hide menu on mobile
     this.setState({check: !this.state.check});
 
-    switch(n){
-      case 0:
-        this.props.updateData("https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1", "Popular now");
-        break;
-      case 1:
-        this.props.updateData("https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&sort_by=primary_release_date.desc&include_adult=true&include_video=false&page=1", "Most recent");
-        break;
-      case 2:
-        this.props.updateData("https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&sort_by=vote_count.desc&include_adult=true&include_video=false&page=1", "Top rated");
-        break;
-      case 3:
-        this.props.updateData("https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&sort_by=revenue.desc&include_adult=false&include_video=false&page=1", "Top revenue");
-        break;
-      default:
-        console.log("Something unexpected happened");
-        break;
-    }
+    //Update data url and set the title
+    this.props.updateData(url, title);
   }
 
   updateCheck(){
@@ -96,19 +81,27 @@ class Menu extends Component {
               </div></a>
             <Search updateData={this.props.updateData}/>
             <a href="#">
-              <li className="menu-title selected" onClick={this.onClick.bind(this, 0)}>
+              <li
+                className="menu-title selected"
+                onClick={this.onClick.bind(this, "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1", "Popular now")}>
                 <p>Popular now</p>
               </li></a>
             <a href="#">
-              <li className="menu-title" onClick={this.onClick.bind(this, 1)}>
+              <li
+                className="menu-title"
+                onClick={this.onClick.bind(this, "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&sort_by=primary_release_date.desc&include_adult=true&include_video=false&page=1", "Most recent")}>
                 <p>Most recent</p>
               </li></a>
             <a href="#">
-              <li className="menu-title" onClick={this.onClick.bind(this, 2)}>
+              <li
+                className="menu-title"
+                onClick={this.onClick.bind(this, "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&sort_by=vote_count.desc&include_adult=true&include_video=false&page=1", "Top rated")}>
                 <p>Top rated</p>
               </li></a>
             <a href="#">
-              <li className="menu-title"  onClick={this.onClick.bind(this, 3)}>
+              <li
+                className="menu-title"
+                onClick={this.onClick.bind(this, "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&sort_by=revenue.desc&include_adult=false&include_video=false&page=1", "Top revenue")}>
                 <p>Top revenue</p>
               </li></a>
           </ul>
