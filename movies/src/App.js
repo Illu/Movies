@@ -4,7 +4,7 @@ import {loadJSON} from './utils.js';
 import Movielist from './movielist.js';
 import Topbar from './topbar.js';
 import Menu from './menu.js';
-import {cfg} from './cfg.js';
+import {categories} from './categories.js';
 
 class App extends Component {
 
@@ -13,7 +13,7 @@ class App extends Component {
 
     this.state = {
       data: null,
-      url: "https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1",
+      url: categories[0].url,
       title: "Popular now",
       mobileMenuDisplay: false
     }
@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.getData("https://api.themoviedb.org/3/discover/movie?api_key=" + cfg.api_key + "&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1");
+    this.getData(categories[0].url);
   }
 
   updateURL(url, title){

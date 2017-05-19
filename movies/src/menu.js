@@ -55,7 +55,7 @@ class MenuItems extends Component{
 
   componentWillMount(){
     var items = [];
-    var i = 0;
+    var i = 0; //This WILL be used to set the selected class. Currently not enabled.
 
     categories.forEach((item) => {
 
