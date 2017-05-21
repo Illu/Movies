@@ -3,7 +3,7 @@ import placeholder from '../public/assets/imgs/placeholder-poster.png';
 import Details from './details.js';
 import {getTitle} from './utils.js';
 
-class Moviecard extends Component {
+export class Moviecard extends Component {
 
   constructor(props){
     super(props);
@@ -41,7 +41,7 @@ class Moviecard extends Component {
 }
 
 
-class Movielist extends Component {
+export class Movielist extends Component {
 
   constructor(props){
     super(props);
@@ -119,6 +119,7 @@ class Movielist extends Component {
           </div>
           {loadButton}
           <Details
+            updateDetails={this.showDetails}
             show={this.state.showDetails}
             data={this.state.showDetailsData}
             exit={this.resetDetails.bind(this)}
@@ -134,5 +135,3 @@ class Movielist extends Component {
     }
   }
 }
-
-export default Movielist;

@@ -13,7 +13,8 @@
 .details-container
   @include gradient-background($colorTopLeft, $colorBotRight)
   position: fixed
-  display: block
+  display: flex
+  flex-direction: column
   left: 300px
   z-index: 10
   top: 0
@@ -46,24 +47,35 @@
 
 .backdrop
   width: 100%
+  height: 50%
+  position: relative
+  background-position: center
+  box-shadow: 0px 0px 10px 2px $menuBackground
+
+.backdrop-bottom
+  margin: 0px 0px 20px 64px
+  position: absolute
+  bottom: 0
+
+.mtitle
+  display: inline
+  color: $secondaryTextColor
+  font-size: 2.4em
+  background: rgba(0,0,0,0.5)
+
+.date
+  display: inline
+  color: #fff
+  background: rgba(0,0,0,0.5)
 
 .movie-details
-  margin: -90px 64px
-
-  .mtitle
-    display: inline
-    color: $secondaryTextColor
-    font-size: 2.4em
-    background: rgba(0,0,0,0.5)
-
-  .date
-    display: inline
-    color: #fff
-    background: rgba(0,0,0,0.5)
+  padding: 20px 64px
+  overflow-y: scroll
+  flex-grow: 1
 
   .overview
     text-align: justify
-    margin-top: 32px
+    margin-bottom: 32px
     color: #fff
     font-size: 1.3em
 
@@ -74,12 +86,19 @@
   .details-container
     left: 0
     width: 100vw
+    z-index: 15
+
+  .mtitle
+    font-size: 2em
+
+  .backdrop
+    height: 30%
 
   .movie-details
-    margin: -90px 16px
+    padding: 20px 16px
 
-    .mtitle
-      font-size: 2em
+  .backdrop-bottom
+    margin: 0px 0px 20px 16px
 
     .overview
       font-size: 1em

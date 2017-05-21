@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {loadJSON} from './utils.js';
-import Movielist from './movielist.js';
+import {Movielist} from './movielist.js';
 import Topbar from './topbar.js';
 import Menu from './menu.js';
 import {categories} from './categories.js';
