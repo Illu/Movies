@@ -22,7 +22,7 @@ class Similar extends Component{
            id={infos[i].id}
            key={infos[i].id}
            enabled={null}
-           showDetails={this.props.updateDetails.bind(this, 0, infos[i])}
+           showDetails={null}
          />
         );
       }

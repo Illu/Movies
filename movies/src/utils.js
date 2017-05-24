@@ -23,10 +23,15 @@ export function loadJSON(path, success, error)
 export function getTitle(data)
 {
   var name;
-  name = data.original_title;
-  if (!name)
-    name = data.name;
-  if (!name)
-    name = data.original_name;
+  try{
+    name = data.original_title;
+    if (!name)
+      name = data.name;
+    if (!name)
+      name = data.original_name;
+  }
+  catch (err){
+    console.log("Error when trying to get a movie title");
+  }
   return name;
 }
