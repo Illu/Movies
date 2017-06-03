@@ -1,4 +1,7 @@
 # Movies
+
+![App preview](http://maximenory.com/public_images/movies_preview.png)
+
 Web app to discover and search movies by popularity, genre, country, etc.
 
 This web app retrieve informations about movies and displays it. It also allows the user to search for a specific movie in the database.
